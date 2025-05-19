@@ -1,8 +1,16 @@
 const express = require('express');
-
+const sequelize = require('./models/index')
 require('dotenv').config();
 
 const app = express();
+
+sequelize.sync({force: false})
+    .then(()=>{
+        console.log("DB 연결 성공");
+    }).catch((err)=>{
+        console.error(err);
+    });
+
 
 app.get('/', (req, res)=> {
     res.send('Hello ToDoReMi');
