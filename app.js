@@ -1,5 +1,6 @@
 const express = require('express');
-const sequelize = require('./models/index')
+const {sequelize} = require('./models/index');
+const authRouter = require('./router/auth')
 require('dotenv').config();
 
 const app = express();
@@ -10,6 +11,9 @@ sequelize.sync({force: false})
     }).catch((err)=>{
         console.error(err);
     });
+
+app.use(express.json());
+app.use('/auth', authRouter);
 
 
 app.get('/', (req, res)=> {

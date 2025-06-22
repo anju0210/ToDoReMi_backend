@@ -20,4 +20,7 @@ User.associate({ Todo });
 Song.associate({ Todo });
 Todo.associate({ User, Song });
 
-module.exports = sequelize;
+module.exports = {
+    sequelize,
+    User, Todo, Song
+};
