@@ -1,6 +1,7 @@
 const express = require('express');
 const {sequelize} = require('./models/index');
 const authRouter = require('./router/auth')
+const todoRouter = require('./router/todo')
 require('dotenv').config();
 
 const app = express();
@@ -14,6 +15,7 @@ sequelize.sync({force: false})
 
 app.use(express.json());
 app.use('/auth', authRouter);
+app.use('/todo', todoRouter);
 
 
 app.get('/', (req, res)=> {
